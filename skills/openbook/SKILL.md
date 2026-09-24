@@ -1,79 +1,100 @@
 ---
 name: openbook
-description: Adaptive, source-grounded, open-book exam reference pack optimization skill. Transforms lecture slides, PDFs, textbooks, past papers, and notes into compact, page-budgeted study guides optimized for rapid retrieval during open-book exams. Use when the user asks to create an open-book exam reference pack, study guide, or exam notes from source materials, or invokes /openbook.
+description: Adaptive, source-grounded, open-book exam reference pack optimization skill. Transforms source materials into compact, page-budgeted study guides optimized for rapid retrieval. Use when asked to create an open-book exam reference pack, study guide, or exam notes, or when /openbook is invoked.
 ---
 
-# OpenBook — Agent Skill
+# OpenBook
 
-Type: Reusable agent skill
-Version: 2.1.0
-Entry point: SKILL.md
-Modes: Skill Mode (agentic hosts) / Prompt Mode (chat hosts)
+**Skill:** Exam reference pack optimizer
+**Version:** 2.1.0
+**Modes:** Skill Mode (agentic hosts) | Prompt Mode (chat hosts)
+
+&nbsp;
 
 ## Trigger
 
-Invoke when user says `/openbook`, or asks for an open-book exam reference pack from source materials.
+Invoke when the user:
+- Says `/openbook`
+- Asks for an "open-book exam reference pack"
+- Asks for "exam notes" or a "study guide" from source materials
+
+&nbsp;
 
 ## What This Skill Does
 
-Transforms exam materials into a compact, source-grounded, page-budgeted reference pack optimized for rapid retrieval during open-book exams.
+Transforms exam materials into a **compact, source-grounded, page-budgeted** reference pack optimized for **rapid retrieval** during open-book exams.
 
-Full behavioral spec: see `OPENBOOK-PROMPT.md`.
-
-This file adds filesystem-aware behavior for agentic hosts.
+&nbsp;
 
 ## Filesystem Behavior
 
-Reading:
+**Reading:**
 - Read all files in user-provided source directory
 - Support: PDF, PPTX, DOCX, MD, TXT, HTML
-- Tag every source with short ID (e.g., S1, S2)
+- Tag every source with a short ID (`S1`, `S2`, ...)
 - Build source manifest at start
 
-Writing:
+**Writing:**
 - Output directory: `./openbook-output/`
-- Files:
-  - `pack.md` — full reference pack
-  - `pack.meta.json` — page estimate, section list, source manifest
-  - `sections/§X.Y.md` — individual sections for incremental regen
+- `pack.md` — full reference pack
+- `pack.meta.json` — page estimate, section list, source manifest
+- `sections/§X.Y.md` — per-section files for incremental regen
 
-Regeneration:
-- When user asks to regenerate §X.Y:
-  1. Overwrite `sections/§X.Y.md`
-  2. Rebuild only that section from sources
-  3. Update `pack.md`, TOC, page estimate in `pack.meta.json`
-  4. Do NOT rebuild other sections
+&nbsp;
+
+## Regeneration
+
+When user asks to regenerate `§X.Y`:
+1. Overwrite `sections/§X.Y.md`
+2. Rebuild only that section from sources
+3. Update `pack.md`, TOC, page estimate in `pack.meta.json`
+4. Do NOT rebuild other sections
+
+&nbsp;
 
 ## Rule Modules
 
-Load and apply in order:
-1. `rules/analysis.md`
-2. `rules/allocation.md`
-3. `rules/generation.md`
-4. `rules/validation.md`
-5. `rules/regeneration.md`
+Load and apply in this exact order:
+
+| Order | File | Purpose |
+|---|---|---|
+| 1 | `rules/analysis.md` | Extract topics, syllabus, patterns |
+| 2 | `rules/allocation.md` | Distribute page budget |
+| 3 | `rules/generation.md` | Produce section content |
+| 4 | `rules/validation.md` | Audit checks A–K |
+| 5 | `rules/regeneration.md` | Incremental section rebuild |
+
+&nbsp;
 
 ## Templates
 
-- `templates/pack-structure.md`
-- `templates/section-formats.md`
-- `templates/pack-meta.md`
-- `templates/render-style.md` (optional render spec)
+| File | Purpose |
+|---|---|
+| `templates/pack-structure.md` | Output skeleton |
+| `templates/section-formats.md` | Per-section format specs |
+| `templates/pack-meta.md` | Metadata schema |
+| `templates/render-style.md` | Optional visual style for PDF/DOCX |
+
+&nbsp;
 
 ## Examples
 
-- `examples/cse2006-java.md`
-- `examples/dbms-examples.md`
+- `examples/cse2006-java.md` — Java OOP reference pack
+- `examples/dbms-examples.md` — DBMS reference pack
+
+&nbsp;
 
 ## Behavior Contract
 
-1. Always ask for page limit if missing.
-2. Always tag content with source refs.
-3. Never predict exam questions.
-4. Always run validation before final output.
-5. Always support incremental regeneration.
-6. Prefer tables/bullets/code over prose.
-7. Apply `render-style.md` only if host renders to PDF/DOCX.
+1. Always ask for page limit if missing
+2. Always tag content with source refs
+3. Never predict exam questions
+4. Always run validation before final output
+5. Always support incremental regeneration
+6. Prefer tables/bullets/code over prose
+7. Apply `render-style.md` only if host renders to PDF/DOCX
+
+&nbsp;
 
 ## Invocation
 
