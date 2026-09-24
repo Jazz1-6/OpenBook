@@ -8,3 +8,6 @@ description: Generate an open-book exam reference pack from source materials.
 Invokes the OpenBook skill to transform exam materials into a compact, source-grounded, exam-optimized reference pack.
 
 ## Usage
+/openbook
+
+See `skills/openbook/SKILL.md` for full behavior.
