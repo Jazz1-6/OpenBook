@@ -20,7 +20,7 @@
   ],
   "category": "education",
   "skills": [
-    "SKILL.md"
+    "skills/openbook"
   ],
   "commands": [
     "commands/openbook.md"
