@@ -1,0 +1,70 @@
+{
+    "name": "openbook-marketplace",
+    "displayName": "OpenBook Marketplace",
+    "description": "Official marketplace listing for the OpenBook skill plugin.",
+    "version": "2.1.0",
+    "publisher": {
+        "name": "OpenBook",
+        "url": "https://github.com/openbook"
+    },
+    "plugins": [
+        {
+            "name": "openbook",
+            "displayName": "OpenBook",
+            "version": "2.1.0",
+            "description": "Adaptive, source-grounded, open-book examination reference pack optimization skill.",
+            "category": "education",
+            "tags": [
+                "exam",
+                "study-guide",
+                "open-book",
+                "reference-pack",
+                "source-grounded"
+            ],
+            "entry": "../.claude-plugin/plugin.json",
+            "source": {
+                "type": "local",
+                "path": "."
+            },
+            "author": {
+                "name": "OpenBook",
+                "url": "https://github.com/openbook"
+            },
+            "license": "MIT",
+            "homepage": "https://github.com/openbook",
+            "repository": "https://github.com/openbook/openbook-claude-plugin",
+            "invocation": "/openbook",
+            "capabilities": {
+                "filesystem": true,
+                "fileRead": [
+                    "pdf",
+                    "pptx",
+                    "docx",
+                    "md",
+                    "txt",
+                    "html"
+                ],
+                "fileWrite": [
+                    "md",
+                    "json"
+                ],
+                "toolExecution": false,
+                "network": false
+            },
+            "modes": [
+                "skill",
+                "prompt"
+            ],
+            "minClaudeVersion": "1.0.0",
+            "publishedAt": "2026-01-01T00:00:00Z",
+            "updatedAt": "2026-01-01T00:00:00Z"
+        }
+    ],
+    "categories": [
+        {
+            "id": "education",
+            "displayName": "Education",
+            "description": "Skills for students, teachers, and self-learners."
+        }
+    ]
+}
