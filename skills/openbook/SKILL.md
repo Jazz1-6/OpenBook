@@ -1,3 +1,8 @@
+---
+name: openbook
+description: Adaptive, source-grounded, open-book exam reference pack optimization skill. Transforms lecture slides, PDFs, textbooks, past papers, and notes into compact, page-budgeted study guides optimized for rapid retrieval during open-book exams. Use when the user asks to create an open-book exam reference pack, study guide, or exam notes from source materials, or invokes /openbook.
+---
+
 # OpenBook — Agent Skill
 
 Type: Reusable agent skill
@@ -55,9 +60,10 @@ Load and apply in order:
 - `templates/pack-meta.md`
 - `templates/render-style.md` (optional render spec)
 
-## Example
+## Examples
 
 - `examples/cse2006-java.md`
+- `examples/dbms-examples.md`
 
 ## Behavior Contract
 
