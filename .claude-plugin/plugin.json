@@ -1,0 +1,95 @@
+{
+    "name": "openbook",
+    "displayName": "OpenBook",
+    "version": "2.1.0",
+    "description": "Adaptive, source-grounded, open-book examination reference pack optimization skill. Transforms lecture slides, PDFs, textbooks, past papers, and notes into compact, page-budgeted study guides optimized for rapid retrieval during open-book exams.",
+    "author": {
+        "name": "OpenBook",
+        "url": "https://github.com/openbook"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/openbook",
+    "repository": "https://github.com/openbook/openbook-claude-plugin",
+    "keywords": [
+        "exam",
+        "study-guide",
+        "open-book",
+        "reference-pack",
+        "source-grounded",
+        "education"
+    ],
+    "category": "education",
+    "entry": "../SKILL.md",
+    "skills": [
+        {
+            "name": "openbook",
+            "path": "../SKILL.md",
+            "invocation": "/openbook",
+            "description": "Transform exam materials into a compact, source-grounded, exam-optimized reference pack."
+        }
+    ],
+    "commands": [
+        {
+            "name": "openbook",
+            "description": "Generate an open-book exam reference pack from source materials.",
+            "skill": "openbook"
+        }
+    ],
+    "resources": {
+        "prompt": "../OPENBOOK-PROMPT.md",
+        "rules": [
+            "../rules/analysis.md",
+            "../rules/allocation.md",
+            "../rules/generation.md",
+            "../rules/validation.md",
+            "../rules/regeneration.md"
+        ],
+        "templates": [
+            "../templates/pack-structure.md",
+            "../templates/section-formats.md",
+            "../templates/pack-meta.md",
+            "../templates/render-style.md"
+        ],
+        "examples": [
+            "../examples/cse2006-java.md",
+            "../examples/dbms-examples.md"
+        ]
+    },
+    "capabilities": {
+        "filesystem": true,
+        "fileRead": [
+            "pdf",
+            "pptx",
+            "docx",
+            "md",
+            "txt",
+            "html"
+        ],
+        "fileWrite": [
+            "md",
+            "json"
+        ],
+        "toolExecution": false,
+        "network": false
+    },
+    "output": {
+        "directory": "./openbook-output/",
+        "files": [
+            "pack.md",
+            "pack.meta.json"
+        ],
+        "sectionsDirectory": "./openbook-output/sections/"
+    },
+    "metadata": {
+        "targets": [
+            "students",
+            "examinees",
+            "self-learners"
+        ],
+        "subjectsSupported": "any theory-heavy or problem-solving subject",
+        "modes": [
+            "skill",
+            "prompt"
+        ]
+    }
+}
